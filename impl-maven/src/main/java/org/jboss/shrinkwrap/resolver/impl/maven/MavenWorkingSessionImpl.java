@@ -21,9 +21,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -198,10 +197,6 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
 
         final List<RemoteRepository> repos = this.getRemoteRepositories();
 
-        final CollectRequest request = new CollectRequest(MavenConverter.asDependencies(depsForResolution,
-            getSession().getArtifactTypeRegistry()),
-            MavenConverter.asDependencies(depManagement, getSession().getArtifactTypeRegistry()), repos);
-
         Collection<ArtifactResult> results = Collections.emptyList();
 
         // Set the dependency selector used in resolving transitive dependencies based on our transitive exclusion
@@ -224,11 +219,23 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
         final DependencySelector dependencySelector = new AndDependencySelector(dependencySelectors);
         getSession().setDependencySelector(dependencySelector);
 
-        try {
-            results = getSystem().resolveDependencies(getSession(), this, request,
-                strategy.getResolutionFilters());
-        } catch (DependencyResolutionException e) {
-            throw wrapException(e);
+        for (int i = 0; i <= repos.size(); i++) {
+            try {
+                List<RemoteRepository> repo =
+                    repos.size() > 0 ? repos.subList(i, i + 1) : new ArrayList<RemoteRepository>();
+                final CollectRequest request = new CollectRequest(
+                    MavenConverter.asDependencies(depsForResolution, getSession().getArtifactTypeRegistry()),
+                    MavenConverter.asDependencies(depManagement, getSession().getArtifactTypeRegistry()),
+                    repo);
+
+                results = getSystem().resolveDependencies(getSession(), this, request,
+                                                          strategy.getResolutionFilters());
+                break;
+            } catch (DependencyResolutionException e) {
+                if (i >= repos.size() - 1) {
+                    throw wrapException(e);
+                }
+            }
         }
 
         final Collection<MavenResolvedArtifact> resolvedArtifacts = new ArrayList<MavenResolvedArtifact>(results.size());
