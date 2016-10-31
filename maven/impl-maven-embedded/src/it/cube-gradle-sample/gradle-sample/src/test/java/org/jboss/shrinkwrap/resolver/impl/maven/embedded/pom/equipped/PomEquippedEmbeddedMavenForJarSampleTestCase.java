@@ -14,13 +14,12 @@ import static org.jboss.shrinkwrap.resolver.impl.maven.embedded.Utils.verifyJasS
  */
 public class PomEquippedEmbeddedMavenForJarSampleTestCase {
 
-
     @Test
     public void testJarSampleBuild() {
         BuiltProject builtProject = EmbeddedMaven
             .forProject(pathToJarSamplePom)
-            .useMaven3Version("3.1.0")
             .setGoals("clean", "verify")
+            .useDefaultDistribution()
             .build();
 
         verifyJarSampleSimpleBuild(builtProject);
@@ -31,7 +30,6 @@ public class PomEquippedEmbeddedMavenForJarSampleTestCase {
     public void testJarSampleBuildWithTestClasses() {
         BuiltProject builtProject = EmbeddedMaven
             .forProject(pathToJarSamplePom)
-            .useMaven3Version("3.1.0")
             .setGoals("clean", "package")
             .setProfiles("test-classes")
             .build();
@@ -39,7 +37,5 @@ public class PomEquippedEmbeddedMavenForJarSampleTestCase {
         verifyJarSampleSimpleBuild(builtProject);
         verifyJasSampleContainsAlsoTestClasses(builtProject);
     }
-
-
 
 }

@@ -33,7 +33,6 @@ public class PomEquippedEmbeddedMavenForWarSampleTestCase {
 
         EmbeddedMaven
             .forProject(pathToWarSamplePom)
-            .useMaven3Version("3.1.0")
             .setGoals("clean", "package")
             .setProfiles("failing")
             .build();
@@ -44,7 +43,6 @@ public class PomEquippedEmbeddedMavenForWarSampleTestCase {
 
         BuiltProject builtProject = EmbeddedMaven
             .forProject(pathToWarSamplePom)
-            .useMaven3Version("3.1.0")
             .setGoals("clean", "package")
             .setProfiles("failing")
             .ignoreFailure()

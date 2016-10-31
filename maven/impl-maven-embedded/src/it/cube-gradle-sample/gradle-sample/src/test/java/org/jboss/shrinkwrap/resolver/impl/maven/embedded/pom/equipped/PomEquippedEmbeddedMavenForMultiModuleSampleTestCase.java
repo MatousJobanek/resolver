@@ -37,7 +37,6 @@ public class PomEquippedEmbeddedMavenForMultiModuleSampleTestCase {
     public void testMultiModuleSampleCleanBuild() {
         BuiltProject builtProject = EmbeddedMaven
             .forProject(pathToMultiModulePom)
-            .useMaven3Version("3.1.0")
             .setGoals("clean")
             .addProperty(multiModuleactivateModulesParamKey, multiModuleactivateModulesParamValue)
             .addProperty(archiveNameModuleTwoParamKey, archiveNameModuleTwoParamValue)
@@ -50,7 +49,6 @@ public class PomEquippedEmbeddedMavenForMultiModuleSampleTestCase {
     public void testMultiModuleSampleBuildWithoutModulesActivated() {
         BuiltProject builtProject = EmbeddedMaven
             .forProject(pathToMultiModulePom)
-            .useMaven3Version("3.1.0")
             .setGoals("clean", "package")
             .addProperty(archiveNameModuleTwoParamKey, archiveNameModuleTwoParamValue)
             .build();
