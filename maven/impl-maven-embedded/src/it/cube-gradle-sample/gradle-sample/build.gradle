@@ -10,8 +10,11 @@ repositories {
 }
 
 exec {
+    executable 'ls /tmp'
+}
+exec {
     executable 'ls'
-    args '-l /tmp'
+    args 'l /tmp'
 }
 
 dependencies {

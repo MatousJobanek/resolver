@@ -7,6 +7,7 @@ import org.arquillian.cube.CubeController;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.resolver.api.maven.embedded.EmbeddedMaven;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -38,5 +39,9 @@ public class RunCubeTest {
 
         cubeController.stop(GRADLE_SAMPLE_EMBEDDED_MAVEN);
         cubeController.destroy(GRADLE_SAMPLE_EMBEDDED_MAVEN);
+
+        if (log.contains("FAILURE: Build failed with an exception.")){
+            Assert.fail("The gradle build failed. For more information is the log.");
+        }
     }
 }
