@@ -11,7 +11,7 @@ repositories {
 
 exec {
     executable 'ls'
-    args '/tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository/org/jboss/shrinkwrap/resolver/shrinkwrap-resolver-depchain/3.0.0-SNAPSHOT/'
+    args '/tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository/'
 }
 
 dependencies {
