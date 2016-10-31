@@ -12,7 +12,7 @@ repositories {
 
 exec {
     executable 'ls'
-    args 'l /tmp'
+    args '/tmp'
 }
 
 dependencies {
