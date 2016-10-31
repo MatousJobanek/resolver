@@ -21,7 +21,7 @@ dependencies {
 }
 
 repositories {
-    flatDir {
-        dirs 'file:///tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository/'
-    }
+    mavenLocal()
+    mavenCentral()
+    maven { url 'file:///tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository/' }
 }
