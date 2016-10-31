@@ -35,6 +35,7 @@ public class PomEquippedEmbeddedMavenForWarSampleTestCase {
             .forProject(pathToWarSamplePom)
             .setGoals("clean", "package")
             .setProfiles("failing")
+            .useMaven3Version("3.3.9")
             .build();
     }
 

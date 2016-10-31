@@ -84,6 +84,7 @@ public class InvokerEquippedEmbeddedMavenForWarSampleTestCase {
         BuiltProject builtProject = EmbeddedMaven
             .withMavenInvokerSet(request, invoker)
             .ignoreFailure()
+            .useMaven3Version("3.3.9")
             .build();
 
         assertEquals(1, builtProject.getMavenBuildExitCode());

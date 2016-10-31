@@ -19,7 +19,7 @@ public class PomEquippedEmbeddedMavenForJarSampleTestCase {
         BuiltProject builtProject = EmbeddedMaven
             .forProject(pathToJarSamplePom)
             .setGoals("clean", "verify")
-            .useDefaultDistribution()
+            .useMaven3Version("3.3.9")
             .build();
 
         verifyJarSampleSimpleBuild(builtProject);
@@ -32,6 +32,7 @@ public class PomEquippedEmbeddedMavenForJarSampleTestCase {
             .forProject(pathToJarSamplePom)
             .setGoals("clean", "package")
             .setProfiles("test-classes")
+            .useMaven3Version("3.3.9")
             .build();
 
         verifyJarSampleSimpleBuild(builtProject);
