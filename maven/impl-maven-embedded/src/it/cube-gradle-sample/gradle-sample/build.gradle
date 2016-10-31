@@ -21,7 +21,10 @@ dependencies {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    maven { url 'file:///tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository/' }
+    mavenDeployer {
+
+        repository(url: "file:///tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository/")
+
+    }
 }
