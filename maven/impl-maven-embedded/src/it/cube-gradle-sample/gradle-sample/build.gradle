@@ -9,12 +9,6 @@ repositories {
     mavenCentral()
 }
 
-
-exec {
-    executable 'ls'
-    args '/tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/'
-}
-
 dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:3.0.0-SNAPSHOT'
@@ -22,9 +16,5 @@ dependencies {
 
 repositories {
     mavenCentral()
-    mavenDeployer {
-
-        repository(url: "file:///tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository/")
-
-    }
+    maven { url 'file:///tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository/' }
 }
