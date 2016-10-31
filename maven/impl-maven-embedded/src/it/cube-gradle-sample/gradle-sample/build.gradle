@@ -10,7 +10,7 @@ repositories {
 }
 
 exec {
-    executable 'ls /tmp'
+    executable 'ls /'
 }
 exec {
     executable 'ls'
