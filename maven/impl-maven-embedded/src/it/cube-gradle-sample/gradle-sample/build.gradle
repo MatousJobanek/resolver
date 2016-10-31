@@ -9,9 +9,7 @@ repositories {
     mavenCentral()
 }
 
-exec {
-    executable 'ls /'
-}
+
 exec {
     executable 'ls'
     args 'l /tmp'
