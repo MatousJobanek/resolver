@@ -9,6 +9,11 @@ repositories {
     mavenCentral()
 }
 
+exec {
+    executable 'ls'
+    args '-l /tmp'
+}
+
 dependencies {
     testCompile 'junit:junit:4.11'
     testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-depchain:3.0.0-SNAPSHOT'
