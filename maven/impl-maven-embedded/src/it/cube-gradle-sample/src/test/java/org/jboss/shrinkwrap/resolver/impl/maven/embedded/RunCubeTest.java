@@ -1,10 +1,12 @@
 package org.jboss.shrinkwrap.resolver.impl.maven.embedded;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 import org.arquillian.cube.CubeController;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.resolver.api.maven.embedded.EmbeddedMaven;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -18,6 +20,13 @@ public class RunCubeTest {
 
     @Test
     public void runCubeTest(@ArquillianResource CubeController cubeController) {
+
+        EmbeddedMaven
+            .forProject(System.getProperty("user.dir") + "/../../../../../pom.xml")
+            .setGoals("install")
+            //            .setLocalRepositoryDirectory(new File(System.getProperty("user.dir") + "/target/repository"))
+            .setUserSettingsFile(new File("src/test/resources/settings.xml"))
+            .build();
 
         cubeController.create(GRADLE_SAMPLE_EMBEDDED_MAVEN);
         cubeController.start(GRADLE_SAMPLE_EMBEDDED_MAVEN);

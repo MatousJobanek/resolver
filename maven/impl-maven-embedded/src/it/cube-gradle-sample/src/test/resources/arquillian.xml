@@ -18,6 +18,8 @@
                     stdErr: true
                     stdOut: true
                 manual: true
+                volumes: [/tmp/shrinkwrap-resolver-impl-maven-embedded-integration-tests-cube-gradle/repository]
+                removeVolumes: true
         </property>
     </extension>
 
