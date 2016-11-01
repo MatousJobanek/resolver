@@ -51,6 +51,7 @@ public class PomEquippedEmbeddedMavenForMultiModuleSampleTestCase {
         BuiltProject builtProject = EmbeddedMaven
             .forProject(pathToMultiModulePom)
             .setGoals("clean", "package")
+            .useMaven3Version("3.3.9")
             .addProperty(archiveNameModuleTwoParamKey, archiveNameModuleTwoParamValue)
             .build();
 
