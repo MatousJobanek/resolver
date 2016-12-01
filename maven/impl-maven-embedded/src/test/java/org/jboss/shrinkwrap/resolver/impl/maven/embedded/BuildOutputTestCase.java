@@ -1,6 +1,7 @@
 package org.jboss.shrinkwrap.resolver.impl.maven.embedded;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
 
 import org.jboss.shrinkwrap.resolver.api.maven.embedded.EmbeddedMaven;
@@ -51,8 +52,8 @@ public class BuildOutputTestCase {
     }
 
     private void verifyStatuses(){
-        assertBuildStdoutContains("Embedded Maven build started: jar-sample/pom.xml", true);
-        assertBuildStdoutContains("Embedded Maven build stopped: jar-sample/pom.xml", true);
+        assertBuildStdoutContains("Embedded Maven build started: jar-sample" + File.separator + "pom.xml", true);
+        assertBuildStdoutContains("Embedded Maven build stopped: jar-sample" + File.separator + "pom.xml", true);
     }
 
     private void verifyBuildContent(boolean shouldContain) {
