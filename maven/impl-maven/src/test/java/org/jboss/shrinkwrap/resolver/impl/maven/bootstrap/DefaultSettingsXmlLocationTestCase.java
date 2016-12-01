@@ -16,19 +16,20 @@
  */
 package org.jboss.shrinkwrap.resolver.impl.maven.bootstrap;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.regex.Matcher;
 
 import org.apache.maven.settings.building.SettingsBuildingRequest;
 import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
 
 /**
  * Verifies that default paths to maven settings.xml files are set by default.
@@ -68,11 +69,15 @@ public class DefaultSettingsXmlLocationTestCase {
         Assert.assertThat(request.getGlobalSettingsFile(), is(not(nullValue())));
 
         Assert.assertThat(removeDoubledSeparator(request.getGlobalSettingsFile().getPath()),
-                is(removeDoubledSeparator(System.getenv("M2_HOME") + "/conf/settings.xml".replaceAll("//", "/").replace('/', File.separatorChar))));
+                is(removeDoubledSeparator(
+                    System.getenv("M2_HOME") + "/conf/settings.xml"
+                        .replaceAll("//", "/")
+                        .replaceAll("/", Matcher.quoteReplacement(File.separator)))));
     }
 
     private String removeDoubledSeparator(String path){
-        return path.replaceAll(File.separator + File.separator, File.separator);
+        return path.replaceAll(Matcher.quoteReplacement(File.separator + File.separator),
+                               Matcher.quoteReplacement(File.separator));
     }
 
     // this is calling internal private method that handles logic of settings.xml setup

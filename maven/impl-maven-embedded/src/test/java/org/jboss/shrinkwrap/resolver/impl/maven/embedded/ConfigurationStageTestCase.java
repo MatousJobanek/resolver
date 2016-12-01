@@ -33,7 +33,7 @@ public class ConfigurationStageTestCase {
         put("propertyKey1", "propertyValue1");
         put("propertyKey2", "propertyValue2");
     }};
-    Map<String, String> shellEnvironments = new HashMap() {{
+    Map<String, String> shellEnvironments = new HashMap<String, String>() {{
         put("shellEnvName1", "shellEnvValue1");
         put("shellEnvName2", "shellEnvValue2");
     }};
