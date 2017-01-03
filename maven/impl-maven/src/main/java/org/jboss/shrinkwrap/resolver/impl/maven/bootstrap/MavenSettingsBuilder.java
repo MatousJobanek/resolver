@@ -138,6 +138,9 @@ public class MavenSettingsBuilder {
             if (request.getGlobalSettingsFile() != null) {
                 log.log(Level.FINE, "Using {0} to get global Maven settings.xml", request.getGlobalSettingsFile()
                         .getAbsolutePath());
+                System.err.println("using: " + request.getGlobalSettingsFile()
+                    .getAbsolutePath());
+                System.err.println("exists " + request.getGlobalSettingsFile().exists());
             }
             final File userSettingsFile = request.getUserSettingsFile();
             if (userSettingsFile != null) {
@@ -191,6 +194,10 @@ public class MavenSettingsBuilder {
         settings = enrichWithLocalRepository(settings);
         settings = enrichWithOfflineMode(settings);
         settings = decryptPasswords(settings);
+
+        System.err.println("local " + settings.getLocalRepository());
+        System.err.println("profs " + settings.getActiveProfiles());
+
         return settings;
     }
 
@@ -213,6 +220,8 @@ public class MavenSettingsBuilder {
         if (altGlobalSettings != null && altGlobalSettings.length() > 0) {
             request.setGlobalSettingsFile(new File(altGlobalSettings));
         }
+
+        System.err.println("in request: " + request.getGlobalSettingsFile());
 
         return request;
     }
