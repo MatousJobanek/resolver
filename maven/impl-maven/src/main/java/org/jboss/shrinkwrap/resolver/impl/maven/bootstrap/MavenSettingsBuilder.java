@@ -28,6 +28,7 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
 import org.apache.maven.settings.Profile;
+import org.apache.maven.settings.Repository;
 import org.apache.maven.settings.Settings;
 import org.apache.maven.settings.building.DefaultSettingsBuilderFactory;
 import org.apache.maven.settings.building.DefaultSettingsBuildingRequest;
@@ -202,10 +203,14 @@ public class MavenSettingsBuilder {
         if (settings.getProfiles().size() > 0) {
             System.err.println("------------profiles-----------");
             for (Profile profile : settings.getProfiles()) {
-                System.err.println("id" + profile.getId());
-                System.err.println("repos" + profile.getRepositories());
+                System.err.println("id " + profile.getId());
+                System.err.println("repos " + profile.getRepositories());
+
+                System.err.println("------------repos-----------");
+                for (Repository repo : profile.getRepositories()) {
                 if (profile.getRepositories().size() > 0){
-                    System.err.println("repo" + profile.getRepositories().get(0).getUrl());
+                    System.err.println("id " + repo.getId());
+                    System.err.println("url " + repo.getUrl());
                 }
             }
 
