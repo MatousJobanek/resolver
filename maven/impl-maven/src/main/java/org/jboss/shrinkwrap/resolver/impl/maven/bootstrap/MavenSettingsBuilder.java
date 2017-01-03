@@ -232,6 +232,10 @@ public class MavenSettingsBuilder {
 
         request.setGlobalSettingsFile(new File(DEFAULT_GLOBAL_SETTINGS_PATH));
         request.setUserSettingsFile(new File(DEFAULT_USER_SETTINGS_PATH));
+
+        File defaultuser = new File(DEFAULT_USER_SETTINGS_PATH);
+        System.err.println("@@@@@@@@ default " + defaultuser.getAbsolutePath());
+        System.err.println("@@@@@@@@ default " + defaultuser.exists());
         // set alternate files
         if (altUserSettings != null && altUserSettings.length() > 0) {
             request.setUserSettingsFile(new File(altUserSettings));
