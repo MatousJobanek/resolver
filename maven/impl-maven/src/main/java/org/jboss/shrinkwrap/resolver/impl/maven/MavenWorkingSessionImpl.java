@@ -373,6 +373,7 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
                     }
                 }, problems);
 
+        System.err.println("-------> active profs " + activeProfiles);
         if (problems.hasSevereFailures()) {
             throw new IllegalStateException("Unable to get active profiles from Maven settings.");
         }
@@ -381,6 +382,7 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
             for (Repository repository : p.getRepositories()) {
                 RemoteRepository repo = MavenConverter.asRemoteRepository(repository);
                 // add remote repository from model only if not overridden by code
+                System.err.println("---->repo " + repo.getUrl());
                 if (!isIdIncluded(additionalRemoteRepositories, repo)) {
                     enhancedRepos.add(repo);
                 }
@@ -390,6 +392,9 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
         // add remote repositories
         for (RemoteRepository repo : remoteRepositories) {
             // add remote repository from model only if not overridden by code
+
+
+            System.err.println("===> repo to add " + repo.getUrl());
             if (!isIdIncluded(additionalRemoteRepositories, repo)) {
                 enhancedRepos.add(repo);
             }
