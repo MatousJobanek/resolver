@@ -337,7 +337,15 @@ public class MavenWorkingSessionImpl extends ConfigurableMavenWorkingSessionImpl
 
         ProfileSelector selector = new SettingsXmlProfileSelector();
         LogModelProblemCollector problems = new LogModelProblemCollector();
-        List<Profile> activeProfiles = selector.getActiveProfiles(MavenConverter.asProfiles(getSettings().getProfiles()),
+
+        System.err.println("");
+        System.err.println("-----------getactive----------");
+        System.err.println("");
+        System.err.println("profs " + getSettings().getProfiles());
+        List<Profile> profiles = MavenConverter.asProfiles(getSettings().getProfiles());
+        System.err.println("as profs " + profiles);
+
+        List<Profile> activeProfiles = selector.getActiveProfiles(profiles,
                 new ProfileActivationContext() {
 
                     @Override
