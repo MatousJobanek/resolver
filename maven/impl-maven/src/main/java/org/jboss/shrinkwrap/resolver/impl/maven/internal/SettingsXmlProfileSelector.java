@@ -58,12 +58,25 @@ public class SettingsXmlProfileSelector implements ProfileSelector {
 
         for (Profile p : profiles) {
             String id = p.getId();
-            if (p.getId() != null && context.getActiveProfileIds().contains(id)
-                && !context.getInactiveProfileIds().contains(id)) {
+            if (id != null &&
+                context.getActiveProfileIds().contains(id) &&
+                !context.getInactiveProfileIds().contains(id))
+            {
                 activeProfiles.add(p);
             }
-            if (p.getActivation() != null && p.getActivation().isActiveByDefault()
-                && !context.getInactiveProfileIds().contains(p.getId())) {
+
+            System.err.println("id " + id);
+            System.err.println("p.getActivation()  " + p.getActivation());
+            System.err.println("context.getActiveProfileIds().contains(id)  " + context.getActiveProfileIds().contains(id));
+            if (p.getActivation() != null) {
+                System.err.println("p.getActivation().isActiveByDefault() " + p.getActivation().isActiveByDefault());
+            }
+            System.err.println("!context.getInactiveProfileIds().contains(id) " + !context.getInactiveProfileIds().contains(id) );
+
+
+            if (p.getActivation() != null &&
+                p.getActivation().isActiveByDefault() &&
+                !context.getInactiveProfileIds().contains(id)) {
                 activeProfiles.add(p);
                 break;
             }
