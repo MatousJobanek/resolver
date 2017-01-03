@@ -208,12 +208,12 @@ public class MavenSettingsBuilder {
 
                 System.err.println("------------repos-----------");
                 for (Repository repo : profile.getRepositories()) {
-                if (profile.getRepositories().size() > 0){
-                    System.err.println("id " + repo.getId());
-                    System.err.println("url " + repo.getUrl());
+                    if (profile.getRepositories().size() > 0) {
+                        System.err.println("id " + repo.getId());
+                        System.err.println("url " + repo.getUrl());
+                    }
                 }
             }
-
 
         }
 
