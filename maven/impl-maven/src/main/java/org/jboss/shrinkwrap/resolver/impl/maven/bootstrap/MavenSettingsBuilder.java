@@ -200,6 +200,8 @@ public class MavenSettingsBuilder {
 
         String altUserSettings = SecurityActions.getProperty(ALT_USER_SETTINGS_XML_LOCATION);
         String altGlobalSettings = SecurityActions.getProperty(ALT_GLOBAL_SETTINGS_XML_LOCATION);
+        System.err.println("=======================");
+        System.err.println("altGlobalSettings:" + altGlobalSettings);
 
         request.setGlobalSettingsFile(new File(DEFAULT_GLOBAL_SETTINGS_PATH));
         request.setUserSettingsFile(new File(DEFAULT_USER_SETTINGS_PATH));

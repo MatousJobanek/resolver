@@ -17,11 +17,14 @@
 package org.jboss.shrinkwrap.resolver.impl.maven.bootstrap;
 
 import java.io.File;
+import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.jboss.shrinkwrap.resolver.api.NoResolvedResultException;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.impl.maven.util.ValidationUtil;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -41,6 +44,11 @@ public class SystemPropertyPrecedenceTestCase {
         System.setProperty(MavenSettingsBuilder.ALT_USER_SETTINGS_XML_LOCATION, " "); // without space it will be
                                                                                       // ignored, and users settings
                                                                                       // will be used!
+    }
+
+    @Before
+    public void before() throws IOException {
+        FileUtils.deleteDirectory(new File("target/profile-repository"));
     }
 
     @Test
