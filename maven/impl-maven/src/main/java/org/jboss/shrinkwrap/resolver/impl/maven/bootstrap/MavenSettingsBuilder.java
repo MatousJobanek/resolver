@@ -242,6 +242,7 @@ public class MavenSettingsBuilder {
         }
 
         System.err.println("in request: " + request.getGlobalSettingsFile());
+        System.err.println("###############################in request user: " + request.getUserSettingsFile());
 
         return request;
     }
