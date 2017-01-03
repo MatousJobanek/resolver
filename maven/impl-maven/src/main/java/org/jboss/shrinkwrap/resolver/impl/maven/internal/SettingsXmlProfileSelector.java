@@ -62,6 +62,7 @@ public class SettingsXmlProfileSelector implements ProfileSelector {
                 context.getActiveProfileIds().contains(id) &&
                 !context.getInactiveProfileIds().contains(id)) {
                 activeProfiles.add(p);
+                continue;
             }
 
             System.err.println("id " + id);
@@ -78,12 +79,11 @@ public class SettingsXmlProfileSelector implements ProfileSelector {
                 p.getActivation().isActiveByDefault() &&
                 !context.getInactiveProfileIds().contains(id)) {
                 activeProfiles.add(p);
-                break;
+                continue;
             }
             for (ProfileActivator activator : activators) {
                 if (activator.isActive(p, context, problems)) {
                     activeProfiles.add(p);
-                    break;
                 }
             }
         }
