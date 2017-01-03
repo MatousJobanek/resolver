@@ -50,7 +50,7 @@ public class InvalidSettingsTestCase {
     @BeforeClass
     public static void setRemoteRepository() {
         System.setProperty(MavenSettingsBuilder.ALT_GLOBAL_SETTINGS_XML_LOCATION, INVALID_SETTINGS);
-        System.setProperty(MavenSettingsBuilder.ALT_USER_SETTINGS_XML_LOCATION, INVALID_SETTINGS);
+//        System.setProperty(MavenSettingsBuilder.ALT_USER_SETTINGS_XML_LOCATION, INVALID_SETTINGS);
     }
 
     private final MavenDependency dependency = MavenDependencies.createDependency(
