@@ -196,7 +196,9 @@ public class MavenSettingsBuilder {
         settings = decryptPasswords(settings);
 
         System.err.println("local " + settings.getLocalRepository());
-        System.err.println("profs " + settings.getActiveProfiles());
+        System.err.println("active profs " + settings.getActiveProfiles());
+        System.err.println("active profs " + settings.getProfiles());
+
 
         return settings;
     }
