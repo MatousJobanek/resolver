@@ -197,7 +197,13 @@ public class MavenSettingsBuilder {
 
         System.err.println("local " + settings.getLocalRepository());
         System.err.println("active profs " + settings.getActiveProfiles());
-        System.err.println("active profs " + settings.getProfiles());
+        System.err.println("profs " + settings.getProfiles());
+        if (settings.getProfiles().size() > 0) {
+            System.err.println("repos" + settings.getProfiles().get(0).getRepositories());
+            if (settings.getProfiles().get(0).getRepositories().size() > 0){
+                System.err.println("repo" + settings.getProfiles().get(0).getRepositories().get(0).getUrl());
+            }
+        }
 
 
         return settings;
