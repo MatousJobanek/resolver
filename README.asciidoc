@@ -565,6 +565,24 @@ builtProject.getModule(String moduleName)
 There are several other useful methods provided by this Java class. For more information see link:/maven/api-maven-embedded/src/main/java/org/jboss/shrinkwrap/resolver/api/maven/embedded/BuiltProject.java[BuiltProject]
 
 
+=== Daemon build
+In some cases you need to run the Maven build on the background. The first case is when the build itself starts some application (eg. `mvn spring-boot:run`). Second case is that you are building a project that is too big so can do some other operation in the meantime let it run on the background.
+In these cases you can specify that the build should be ran as a daemon:
+[source,java]
+....
+EmbeddedMaven.forProject("path/to/pom.xml").setGoals("spring-boot:run").useAsDaemon().build();
+....
+In this case it could be useful to wait till the application is started. To do so, use one of the methods:
+[source,java]
+....
+...useAsDaemon().withWaitUntilOutputLineMathes(".*Started Application.*").build();
+...useAsDaemon().withWaitUntilOutputLineMathes(".*Started Application.*", 50, TimeUnit.SECONDS).build();
+....
+In the first case it waits until some line matches the given output. If there is not line matched within the default timeout (which is two minutes) then TimeoutException is thrown.
+The second case is the same but it sets the timeout to given value.
+
+
+
 === Examples
 First example is just package a project and get the default archive:
 [source,java]
