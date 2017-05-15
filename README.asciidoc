@@ -566,8 +566,8 @@ There are several other useful methods provided by this Java class. For more inf
 
 
 === Daemon build
-In some cases you need to run the Maven build on the background. The first case is when the build itself starts some application (eg. `mvn spring-boot:run`). Second case is that you are building a project that is too big so can do some other operation in the meantime let it run on the background.
-In these cases you can specify that the build should be ran as a daemon:
+In some cases, you need to run a Maven build on the background. The first case is when the build itself starts some application (eg. `mvn spring-boot:run`). Second case is when you are building a project that is too big so can do some other operation in the meantime let the Maven built run on the background.
+In these cases you can specify that the build should be used as a daemon, which means that ShrinkWrap Resolver runs the build in a new separated thread:
 [source,java]
 ....
 EmbeddedMaven.forProject("path/to/pom.xml").setGoals("spring-boot:run").useAsDaemon().build();
@@ -580,7 +580,13 @@ In this case it could be useful to wait till the application is started. To do s
 ....
 In the first case it waits until some line matches the given output. If there is not line matched within the default timeout (which is two minutes) then TimeoutException is thrown.
 The second case is the same but it sets the timeout to given value.
+ShrinkWrap Resolver stops the main tread and waits until some line matches the given regex and then continues. The build itself continues running as well.
 
+In the case you need to build a huge project and let it run on the background and then come back to it later, you can use the object `DaemonBuild` that returns the method `build()`:
+....
+DaemonBuild build = EmbeddedMaven.forProject("path/to/pom.xml").setGoals("package").useAsDaemon().build();
+....
+This object offers a methods `isAlive()` that says if the thread containing the Maven build is alive or not; and a method `getBuiltProject()` that returns an instance of the BuiltProject when the thread is not alive, `null` otherwise.
 
 
 === Examples
