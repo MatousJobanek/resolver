@@ -51,7 +51,7 @@ public class PomEquippedEmbeddedMavenImpl extends ConfigurationStageImpl impleme
         request.setPomFile(absoluteFile);
 
         Properties properties = new Properties();
-        properties.put("skipTests", "true");
+        properties.put("maven.skip.test", "true");
         request.setProperties(properties);
     }
 
